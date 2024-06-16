@@ -1,0 +1,14 @@
+name: pOmniTagger
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  - python==3.10
+  - ipython
+  - pip
+  - pip:
+    - pandas
+    - requests
+    - opencv-python
+

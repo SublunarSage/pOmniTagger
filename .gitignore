@@ -1,0 +1,101 @@
+# pixi environments
+.pixi
+*.egg-info
+
+#### mamba stuff
+# Git files
+*.orig
+
+# User Taskfile.yml
+Taskfile.yml
+Taskfile.yaml
+taskfile.yml
+taskfile.yaml
+
+# Mamba generated files
+include/mamba/core/version.hpp
+.micromamba/
+
+# OS files
+.DS_Store
+
+# Editor files
+.vscode
+.idea
+*.swap
+
+
+# CMake files
+**/build/
+**/build-*/
+CMakeUserPresets.json
+**/cmake-build-debug/
+
+# CMake files that should not exists because they should be generated under a build folder
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+# There exist other Makefiles in /docs
+/Makefile
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps
+
+# Clang tools
+.cache/
+compile_commands.json
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Python caches
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+__pycache__
+mamba.egg-info/
+
+# Misc
+__cache__/
+*.cppimporthash
+.rendered*
+installed.json
+tmp/
+test_7.json.state
+_skbuild/
+
+# Don't know what this is but if I don't ignore it something bad might happen.
+etc/aau_token

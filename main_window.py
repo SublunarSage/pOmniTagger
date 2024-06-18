@@ -25,10 +25,11 @@ if __name__ == '__main__':
 
     # Create a Pywebview window
     primary_window = webview.create_window(
-        'Flask with Pywebview', 'http://localhost:8050', min_size=(1280,800)
+        'Flask with Pywebview', 'http://localhost:8050', min_size=(1280,800), 
+        frameless=False, easy_drag=False, resizable=True
         )
     
-
+    
 
     webview.start(debug=True)
    

@@ -8,7 +8,12 @@ app = dash.Dash(__name__)
 app.layout = html.Div([
     dcc.Input(id='input-box', type='text'),
     html.Button('Submit', id='button'),
-    html.Div(id='output-container')
+    html.Div(id='output-container'),
+    html.Img(src="https://i.imgur.com/oke7l7p.gif"),
+    html.Div([
+        html.H1("Hello World!"),
+        html.P("This is a simple Dash app running in a Pywebview window.")
+    ])
 ])
 
 # Define the callback

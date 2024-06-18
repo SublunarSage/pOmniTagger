@@ -9,9 +9,14 @@ dependencies:
   - pip
   - pip:
     - dash
+    - dash_dangerously_set_inner_html
+    - flask
     - pandas
     - requests
     - opencv-python
     - pywebview
+#    - PySide2
+#    - pythonnet
+#    - QtPy
 
 

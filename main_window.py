@@ -2,7 +2,7 @@ import webview
 import webview.menu as wm
 import threading
 import dash_app  # Import the Dash app module
-import flask_app
+import flask_server
 
 def start_dash():
     # Start the Dash server
@@ -10,11 +10,22 @@ def start_dash():
 
 def start_flask():
     # Start the Flask server
-    flask_app.flask_app.run(debug=True, port=8050, use_reloader=False)
+    flask_server.flask_server.run(debug=True, port=8050, use_reloader=False)
 
 def destroy_window(window):
     # Destroy the window
     window.destroy()
+
+def open_file_dialog(window):
+    file_types = ('Image Files (*.bmp;*.jpg;*.gif)', 'All files (*.*)')
+
+    result = window.create_file_dialog(
+        webview.FOLDER_DIALOG, allow_multiple=True, file_types=file_types
+    )
+    print(result)
+
+def get_token():
+    return webview.token
 
 if __name__ == '__main__':
     # Start Dash in a separate thread
@@ -30,6 +41,6 @@ if __name__ == '__main__':
         )
     
     
-
-    webview.start(debug=True)
+    webview.start(gui='qt')
+    
    

@@ -11,6 +11,24 @@
     align-items:center;
 }
 
+.app-nav-bar button {
+    background-color: #2b2b2b;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.app-nav-bar button:hover {
+    background-color: #4b4b4b;
+}
+
 body {
     height: 100vh;
     width: 100vw;
@@ -28,8 +46,17 @@ body {
     overflow-y: auto;
     padding-top: 40px;
     padding-bottom: 24px;
-
 }
+
+
+.tab-content { 
+    display: none;
+}
+
+.active-tab { 
+    display: block;
+}
+
 
 .dummy-footer {
     height: 24px;

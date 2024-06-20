@@ -8,15 +8,14 @@ dependencies:
   - ipython
   - pip
   - pip:
-    - dash
-    - dash_dangerously_set_inner_html
     - flask
     - pandas
     - requests
     - opencv-python
     - pywebview
-#    - PySide2
-#    - pythonnet
-#    - QtPy
+    - PySide2
+    - pythonnet
+    - QtPy
+    - pyqt6
 
 

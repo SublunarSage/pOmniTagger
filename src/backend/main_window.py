@@ -1,12 +1,11 @@
 import webview
-import webview.menu as wm
 import threading
-import dash_app  # Import the Dash app module
+import logging
+
 import flask_server
 
-def start_dash():
-    # Start the Dash server
-    dash_app.app.run(debug=True, port=8050, use_reloader=False)
+logger = logging.getLogger(__name__)
+
 
 def start_flask():
     # Start the Flask server

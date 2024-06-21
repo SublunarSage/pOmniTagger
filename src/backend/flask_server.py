@@ -36,8 +36,15 @@ def add_header(response):
 
 @flask_server.route('/')
 def index():
-    return render_template('index.html', token=webview.token)
-    #return render_template('image_gallery_list.html')
+    tabs = [
+        {"id": "image_input_processing", "title": "Image Input and Processing", "template": "image_input_processing.html"},
+        {"id": "image_interrogation", "title": "Interrogation", "template": "image_interrogation.html"},
+        {"id": "image_tagging", "title": "Tagging", "template": "image_tagging.html"},
+        {"id": "extras", "title": "Extras", "template": "extras.html"},
+    ]
+
+    #return render_template('index.html', token=webview.token)
+    return render_template('index.html', token=webview.token, tabs=tabs)
 
 @flask_server.route('/image_input_processing')
 def image_input_processing():

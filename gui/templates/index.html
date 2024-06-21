@@ -3,22 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>pOmniTagger</title>
     <link rel="stylesheet" href="../static/css/index_style.css">
+    <script src = "../static/js/index_tabs.js">  </script>
+    <script src = "../static/js/index_script.js">  </script>
 </head>
 <body>
 
     <div class="app-over-wrapper">
         <div class='app-nav-bar'>
-            <button onclick="loadTab('image_input_processing')">Image Input and Processing</button>
-            <button onclick="loadTab('extras')">Extras</button>
+            {% for tab in tabs %}
+                <button class="tab-button{% if loop.first %} active{% endif %}" 
+                        data-tab="{{ tab.id }}" 
+                        onclick="loadTab('{{ tab.id }}')">
+                    {{ tab.title }}
+                </button>
+            {% endfor %}
         </div>
-        <div class="app-tab-container">
-            <div id="tab-content" class="tab-content">
-            </div>
+        <div class="app-tab-container" data-initial-tab="{{ tabs[0].id }}">
+            {% for tab in tabs %}
+                <div id="{{ tab.id }}" class="tab-content{% if loop.first %} active{% endif %}">
+                    {% include tab.template %}
+                </div>
+            {% endfor %}
         </div>
         <div class="dummy-footer"></div>
     </div>
-<script src="../static/js/index_script.js"></script>
 </body>
 </html>

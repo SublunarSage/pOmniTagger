@@ -1,32 +1,24 @@
 <div>
     <h2>Image Input and Processing</h2>
-    <label for="directory-upload" class="custom-directory-upload">Load File Directory</label>
-    <span id="directory-selected"></span>
-    <input type="file" id="directory-upload">
-    <button onclick="openDirectory()">Open a directory (python edition)</button>
-    <div id="open-directory-container"></div>
+    <div style="display:flex;">
+        <button onclick="openDirectory()">Open a directory (python edition)</button>
+        <div id="open-directory-container"></div>
+    </div>
 </div>
 <style>
-    input[type="file"] {
-        display: none;
-    }
-    .custom-directory-upload {
-        border: 4px solid #ccc;
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
+    #open-directory-container {
+        width: 60vw;
+        height: 32px;
+        color: #fff;
+        display:flex;
+        align-items: center;
+        background-color: #333;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        padding:4px;
+        margin-left:5vw;
+        font-family:"RobotoMono", monospace;
     }
 </style>
 <script>
-    console.log("Test");
-    document.getElementById('directory-upload').addEventListener('change', function() {
-        var fileName = '';
-        fileName = this.value;
-        console.log("fileName: ", fileName);
-        document.getElementById('directory-selected').innerHTML = fileName;
-    });
-
-    function pythonFunction() {
-        console.log("Open Folder");
-    }
 </script>

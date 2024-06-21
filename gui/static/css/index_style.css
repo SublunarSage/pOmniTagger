@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'RobotoMono';
+    src: url(../fonts/roboto-mono/RobotoMono-VariableFont_wght.ttf);
+
+}
+
+
 .app-nav-bar {
     background-color: #2b2b2b;
     color: #fff;
@@ -53,7 +60,7 @@ body {
     display: none;
 }
 
-.active-tab { 
+.tab-content.active { 
     display: block;
 }
 

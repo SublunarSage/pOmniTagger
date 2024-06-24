@@ -12,10 +12,10 @@ dependencies:
     - pandas
     - requests
     - opencv-python
-    - pywebview
-    - PySide2
-    - pythonnet
+    - pyside6
     - QtPy
-    - pyqt6
+    - pywebview[pyside6]
+    - pythonnet
+
 
 

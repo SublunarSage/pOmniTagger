@@ -6,7 +6,7 @@ import sys
 import flask_server
 from qtpy.QtWidgets import QApplication
 from qtpy.QtCore import QEvent
-import webview.platforms.qt
+import qtpy.QtWebEngineCore
 
 logger = logging.getLogger(__name__)
 

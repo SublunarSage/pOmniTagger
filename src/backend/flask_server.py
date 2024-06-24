@@ -46,15 +46,6 @@ def index():
     #return render_template('index.html', token=webview.token)
     return render_template('index.html', token=webview.token, tabs=tabs)
 
-@flask_server.route('/image_input_processing')
-def image_input_processing():
-    return render_template('image_input_processing.html')
-
-@flask_server.route("/extras")
-def extras():
-    return render_template('extras.html')
-
-
 @flask_server.route('/choose/directory', methods=['POST'])
 @verify_token
 def choose_directory():

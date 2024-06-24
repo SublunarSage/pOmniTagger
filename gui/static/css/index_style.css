@@ -1,49 +1,89 @@
 @font-face {
     font-family: 'RobotoMono';
     src: url(../fonts/roboto-mono/RobotoMono-VariableFont_wght.ttf);
-
 }
 
+@font-face {
+    font-family: 'RobotoFlex';
+    src: url(../fonts/roboto-flex/RobotoFlex-VariableFont.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url(../fonts/noto-sans/NotoSans-VariableFont.ttf);
+}
+
+* {
+    font-family:'NotoSans', sans-serif;
+    color:#fff;
+}
+
+:root
+{
+    --body-bg-color: #2d2d3d;
+    --app-nav-bg-color: #2b2b2b;
+    --app-button-hover-color: #4b4b4b;
+    --app-button-active-color: #6d4d4d;
+    --app-nav-text-color: #fff;
+}
+
+h2 {
+    font-family: 'RobotoFlex', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top:0px;
+}
 
 .app-nav-bar {
-    background-color: #2b2b2b;
-    color: #fff;
-    width:100vw;
-    height:40px;
-    position:fixed;
+    background-color: var(--app-nav-bg-color);
+    color: var(--app-nav-text-color);
+    width: 100vw;
+    height: 40px;
+    position: fixed;
     top: 0;
     padding-left: 8px;
     display: flex;
-    flex-wrap:wrap;
-    align-items:center;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: hidden;
+    z-index: 10;
 }
 
 .app-nav-bar button {
-    background-color: #2b2b2b;
-    color: #fff;
+    background-color: var(--app-nav-bg-color);
+    color: var(--app-nav-text-color);
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
     margin: 0px;
     font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .app-nav-bar button:hover {
-    background-color: #4b4b4b;
+    background-color: var(--app-button-hover-color);
+}
+.app-nav-bar .tab-button.active {
+    background-color: var(--app-button-active-color);
+}
+
+.app-tab-container {
+    padding: 16px;
+    overflow-y: auto;
 }
 
 body {
+    background-color:var(--body-bg-color); 
     height: 100vh;
     width: 100vw;
     overflow: visible;
     display: flex;
     flex-direction: column;
     margin: 0px;
-    background-color:#557;
+    
 }
 
 .app-over-wrapper {
@@ -65,11 +105,11 @@ body {
 }
 
 
-.dummy-footer {
+.app-footer {
     height: 24px;
     width: 100%;
-    background-color: #2b2b2b;
-    color: #fff;
+    background-color: var(--app-nav-bg-color);
+    color: var(--app-nav-text-color);
     position: absolute;
     bottom: 0;
     left: 0;

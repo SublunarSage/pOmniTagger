@@ -37,10 +37,14 @@ def add_header(response):
 @flask_server.route('/')
 def index():
     tabs = [
-        {"id": "image_input_processing", "title": "Image Input and Processing", "template": "image_input_processing.html"},
-        {"id": "image_interrogation", "title": "Interrogation", "template": "image_interrogation.html"},
-        {"id": "image_tagging", "title": "Tagging", "template": "image_tagging.html"},
-        {"id": "extras", "title": "Extras", "template": "extras.html"},
+        {"id": "image_input_processing", "title": "Image Input and Processing", 
+            "template": "image_input_processing.html", "css": "image_input_processing.css"},
+        {"id": "image_interrogation", "title": "Interrogation", 
+            "template": "image_interrogation.html", "css": "test.css"},
+        {"id": "image_tagging", "title": "Tagging", 
+            "template": "image_tagging.html", "css": "test.css"},
+        {"id": "extras", "title": "Extras", 
+            "template": "extras.html", "css": "test.css"},
     ]
 
     #return render_template('index.html', token=webview.token)

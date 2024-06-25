@@ -1,13 +1,19 @@
-function openDirectoryHandler() {
-    if (this.responseText) {
-        var response = JSON.parse(this.responseText);
-        document.getElementById("open-directory-container").innerHTML = response.directory;
+function openDirectoryHandler(elementID) {
+    return function () {
+        if (this.readyState == 4 && this.status == 200 && this.responseText) {
+            var response = JSON.parse(this.responseText);
+            document.getElementById(elementID).innerHTML = response.directory;
+    
+        }
     }
 }
 
-function openDirectory() {
-    doAjax("/choose/directory", "POST", openDirectoryHandler);
+function openDirectory(elementID) {
+    doAjax("/choose/directory", "POST", openDirectoryHandler(elementID));
 }
+
+
+
 
 function getHttpRequestObject() {
     // Define and initialize as false

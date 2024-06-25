@@ -6,10 +6,11 @@ import sys
 import flask_server
 from qtpy.QtWidgets import QApplication
 from qtpy.QtCore import QEvent
-import qtpy.QtWebEngineCore
+from qtpy.QtWebEngineCore import QWebEngineSettings
 
 logger = logging.getLogger(__name__)
 
+print("Test")
 
 def start_flask():
     # Start the Flask server

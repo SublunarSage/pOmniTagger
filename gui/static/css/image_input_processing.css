@@ -1,0 +1,52 @@
+
+.directory-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    & * {
+        margin-left:8px;
+        margin-right:8px;
+    }
+}
+
+#open-directory-container {
+    width: 60vw;
+    height: 28px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-family: "RobotoMono", monospace;
+    
+}
+#open-dir-button {
+    height: 24px;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    cursor:pointer;
+    font-family:"RobotoMono", monospace;
+}
+
+
+.directory-interaction-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:8px;
+    position: relative;
+    height: calc(100vh - 200px);
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding:4px;
+}
+
+.media-container {
+    
+    
+}

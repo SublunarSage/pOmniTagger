@@ -1,3 +1,4 @@
+@import url('media_container.css');
 
 .directory-input-container {
     display: flex;
@@ -23,7 +24,7 @@
     font-family: "RobotoMono", monospace;
     
 }
-#open-dir-button {
+#open-directory-button {
     height: 24px;
     background-color: #333;
     border: 1px solid #ccc;
@@ -34,19 +35,17 @@
 
 
 .directory-interaction-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top:8px;
+    margin-top: 8px;
     position: relative;
     height: calc(100vh - 200px);
     background-color: #333;
     border: 1px solid #ccc;
     border-radius: 2px;
-    padding:4px;
+    padding: 4px;
 }
 
-.media-container {
-    
-    
+.directory-interaction-container > .media-container {
+    border: none;
+    border-radius: 0px;
 }
+

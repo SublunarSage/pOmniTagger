@@ -1,7 +1,7 @@
 <div>
     <h2>Image Input and Processing</h2>
     <div class="directory-input-container">
-        <button onclick="openDirectory('open-directory-container')" id="open-dir-button">Open...</button>
+        <button id="open-directory-button">Open...</button>
         <div id="open-directory-container"></div>
         <svg id="directory-examine" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
@@ -15,7 +15,46 @@
                     <input type="range" id="image-size-slider" min="64" max="256" value="96" step="16">
                 </div>
             </div>
+            <div class="image-gallery grid">
+                <div class="item">
+                  <div class="status-tip ok">
+                      <div class="icon">✔</div>
+                      <div class="text">Found an accompanying caption file</div>
+                  </div>
+                  <div class="image">
+                      <img src="https://i.imgur.com/32t2P2Q.png" alt="img">
+                  </div>
+                </div>
+                <div class="item">
+                    <div class="status-tip error">
+                        <div class="icon">✘</div>
+                        <div class="text">No accompanying caption file found </div>
+                    </div>
+                    <div class="image">
+                        <img src="https://safebooru.org//samples/4619/sample_179bf0e66c111001a51585f2cd0cfcdb025ad13f.jpg?4995403" alt="img">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="status-tip ok">
+                        <div class="icon">✔</div>
+                        <div class="text">Found an accompanying caption file</div>
+                    </div>
+                    <div class="image">
+                        <img src="https://safebooru.org//images/4619/7de1e519a8df9a8a20a190eb4e31729b1c8f7bfa.jpg?4995143" alt="img">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="status-tip ok">
+                        <div class="icon">✔</div>
+                        <div class="text">Found an accompanying caption file</div>
+                    </div>
+                    <div class="image">
+                        <img src="https://safebooru.org//samples/4619/sample_f76d8515a598e0eb9e4040b976b833761acd1ffd.jpg?4997793" alt="img">
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </div>
 </div>
 <script>

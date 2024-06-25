@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pOmniTagger</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index_style.css') }}">
-    <script src = "../static/js/index_tabs.js">  </script>
-    <script src = "../static/js/index_script.js">  </script>
+    <script type="module">
+        import { loadTab } from '../static/js/core.js';
+        import { openDirectory } from '../static/js/api.js';
+
+        window.loadTab = loadTab;
+        window.openDirectory = openDirectory;
+    </script>
+    <link rel="shortcut icon" href="../static/favicon.ico">
 </head>
 <body>
 

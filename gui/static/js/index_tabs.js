@@ -18,16 +18,39 @@ function loadTab(tabId) {
     document.querySelector(`.tab-button[data-tab="${currentTab}"]`).classList.remove('active');
     document.querySelector(`.tab-button[data-tab="${tabId}"]`).classList.add('active');
 
-    // load the tab-specific CSS
-    const tabStyle = document.getElementById('tab-style');
-    tabStyle.href = newTab.dataset.css;
-
-    // Load the tab-specific JavaScript
-    loadTabScript(tabId);
+    // load the tab-specific CSS and JS
+    loadTabResources(tabId);
 
     // Update the current tab
     currentTab = tabId;
 
+}
+
+function loadTabResources(tabId) {
+    loadTabCSS(tabId);
+    loadTabScript(tabId);
+}
+
+function loadTabCSS(tabId) {
+    const cssHref = `/static/css/${tabId}.css`;
+    
+    // Check if the stylesheet is already loaded
+    if (!document.querySelector(`link[href="${cssHref}"]`)) {
+        fetch(cssHref)
+            .then(response => {
+                if (response.ok) {
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = cssHref;
+                    document.head.appendChild(link);
+                } else {
+                    console.log(`No specific CSS file found for ${tabId}`);
+                }
+            })
+            .catch(error => {
+                console.error(`Error checking for ${tabId}.css:`, error);
+            });
+    }
 }
 
 function loadTabScript(tabId) {
@@ -62,8 +85,5 @@ document.addEventListener('DOMContentLoaded', function() {
     currentTab = tabContainer.dataset.initialTab;
 
     // Set initial tab-specific CSS
-    const tabStyle = document.getElementById('tab-style');
-    const initialTabContent = document.getElementById(currentTab);
-    tabStyle.href = initialTabContent.dataset.css;
-    loadTabScript(currentTab);
+    loadTabResources(currentTab);
 });

@@ -38,13 +38,13 @@ def add_header(response):
 def index():
     tabs = [
         {"id": "image_input_processing", "title": "Image Input and Processing", 
-            "template": "image_input_processing.html", "css": "image_input_processing.css"},
+            "template": "image_input_processing.html"},
         {"id": "image_interrogation", "title": "Interrogation", 
-            "template": "image_interrogation.html", "css": "test.css"},
+            "template": "image_interrogation.html"},
         {"id": "image_tagging", "title": "Tagging", 
-            "template": "image_tagging.html", "css": "test.css"},
+            "template": "image_tagging.html"},
         {"id": "extras", "title": "Extras", 
-            "template": "extras.html", "css": "test.css"},
+            "template": "extras.html"},
     ]
 
     #return render_template('index.html', token=webview.token)

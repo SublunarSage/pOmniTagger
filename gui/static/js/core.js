@@ -11,6 +11,15 @@ export const loadTab = (tabId) => {
     const oldTab = document.getElementById(currentTab);
     const newTab = document.getElementById(tabId);
 
+       // Call onTabExit for the current tab
+    if (currentTab && moduleMap[currentTab]) {
+        moduleMap[currentTab].forEach(moduleName => {
+            if (tabModules[moduleName] && typeof tabModules[moduleName].onTabExit === 'function') {
+                tabModules[moduleName].onTabExit();
+            }
+        });
+    }
+
     oldTab?.classList.remove('active');
     newTab?.classList.add('active');
 
@@ -18,7 +27,7 @@ export const loadTab = (tabId) => {
     document.querySelector(`.tab-button[data-tab="${tabId}"]`)?.classList.add('active');
 
     loadTabResources(tabId);
-
+    
     currentTab = tabId;
 };
 

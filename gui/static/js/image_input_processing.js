@@ -6,12 +6,19 @@ const imageInputProcessing = (() => {
 
     const onTabAccess = () => {
         console.log("Image Input Processing tab accessed, running necessary updates");
+
+    };
+
+    const onTabExit = () => {
+        console.log("Exiting Image Input Processing tab, performing cleanup");
+        // Perform any necessary cleanup here
     };
 
     const initializeTab = () => {
         console.log("Initializing Image Input Processing tab");
         initializeImageSizeSlider();
         initializeDirectoryButton();
+        
     };
 
     const initializeImageSizeSlider = () => {
@@ -48,7 +55,7 @@ const imageInputProcessing = (() => {
         const fileName = imagePath.split('/').pop();
         const statusClass = hasCaptionFile ? 'ok' : 'error';
         const statusText = hasCaptionFile ? 'Found an accompanying caption file' : 'No accompanying caption file found';
-        // Create the HTML string for the new item
+        
         return `
             <div class="item">
                 <div class="status-tip ${statusClass}">
@@ -81,6 +88,11 @@ const imageInputProcessing = (() => {
             // Create a temporary container to hold the HTML string
             const temp = document.createElement('div');
             temp.innerHTML = itemHtml;
+
+            const img = temp.querySelector('img');
+            if (img) {
+                img.src = `${img.src}?t=${Date.now()}`;
+            }
             
             // Append the new item to the fragment
             fragment.appendChild(temp.firstElementChild);
@@ -90,11 +102,19 @@ const imageInputProcessing = (() => {
         gallery.appendChild(fragment);
     
         console.log(`Added ${files.length} new items to the gallery`);
+
     };
 
     const clearGallery = () => {
         const gallery = document.getElementById('input-image-gallery-grid');
         if (gallery) {
+            // Dispose of old image data
+            const images = gallery.querySelectorAll('img');
+            images.forEach(img => {
+                img.src = '';
+                img.removeAttribute('src');
+            });
+
             gallery.innerHTML = '';
             console.log("Gallery cleared");
         } else {
@@ -103,7 +123,8 @@ const imageInputProcessing = (() => {
     };
 
 
-    return { initializeTab, onTabAccess };
+
+    return { initializeTab, onTabAccess, onTabExit };
 })();
 
 tabModules.imageInputProcessing = imageInputProcessing;

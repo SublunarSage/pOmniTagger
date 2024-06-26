@@ -44,26 +44,32 @@ const doAjax = (url, method = "GET", data = {}) => {
 let currentDirectory = null;
 let batchSize = 1; // Temporary value (server sets this)
 
-const openDirectory = async (elementId) => {
+const openDirectory = async (elementId, onBatchReceived, clearGallery) => {
     try {
         const response = await doAjax("/choose/directory", "POST");
         if (response.status === 'success') {
             currentDirectory = response.directory;
-            batchSize = response.batch_size;  // Update batch size from server
+            batchSize = response.batch_size; // Update batch-size from server
             document.getElementById(elementId).innerHTML = currentDirectory;
             console.log("Directory selected:", currentDirectory);
             console.log("Total files:", response.total_files);
             console.log("Batch size:", batchSize);
-            await processFileBatches();
+
+            if (clearGallery) {
+                clearGallery();
+            }
+
+            await processFileBatches(onBatchReceived);  // Pass the callback here
         } else {
             console.log("Directory selection cancelled or failed");
+            document.getElementById(elementId).innerHTML = "No directory selected";
         }
     } catch (error) {
         console.error("Error opening directory:", error);
     }
 };
 
-const processFileBatches = async () => {
+const processFileBatches = async (onBatchReceived) => {
     let hasMore = true;
     while (hasMore) {
         try {
@@ -72,8 +78,10 @@ const processFileBatches = async () => {
             });
             if (batchResponse.status === 'success') {
                 console.log("Received batch of files:", batchResponse.files);
-                // Process the batch of files here
-                //updateUIWithFiles(batchResponse.files);
+                // Call the callback function with the received files
+                if (onBatchReceived) {
+                    onBatchReceived(batchResponse.files);
+                }
                 hasMore = batchResponse.has_more;
             } else {
                 console.error("Error getting next batch:", batchResponse);
@@ -88,4 +96,4 @@ const processFileBatches = async () => {
 };
 
 
-export { doAjax, openDirectory };
+export { doAjax, openDirectory, processFileBatches };

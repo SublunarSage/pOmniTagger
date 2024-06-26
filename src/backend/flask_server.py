@@ -1,10 +1,12 @@
 import os
 import json
+import mimetypes
 
 from functools import wraps
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_file
 import pomni_utils
+from pomni_config import BATCH_SIZE, FILE_EXTENSIONS
 
 import webview
 
@@ -17,8 +19,6 @@ flask_server = Flask(__name__,static_folder=f"{gui_dir}/static", template_folder
 flask_server.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1 # disable caching
 
 file_lists = {}
-BATCH_SIZE = 4 # Eventually make this a user-configurable setting
-
 
 def verify_token(function):
     @wraps(function)
@@ -53,6 +53,9 @@ def index():
     #return render_template('index.html', token=webview.token)
     return render_template('index.html', token=webview.token, tabs=tabs)
 
+
+# TODO: Figure out how to split this into separate files
+
 @flask_server.route('/choose/directory', methods=['POST'])
 @verify_token
 def choose_directory():
@@ -74,7 +77,7 @@ def choose_directory():
         for root, dirs, files in os.walk(directory):
             for file in files:
                 file_path = os.path.join(root, file)
-                if os.path.splitext(file_path)[1].lower() in default_extensions:
+                if os.path.splitext(file_path)[1].lower() in FILE_EXTENSIONS:
                     file_list.append(file_path)
         
         # Store the file list in memory
@@ -92,12 +95,16 @@ def choose_directory():
     else:
         return jsonify({'status': 'cancel'})
 
+def has_caption_file(file_path):
+    base_name = os.path.splitext(file_path)[0]
+    caption_extensions = {'.txt', '.caption'}
+    return any([os.path.exists(base_name + ext) for ext in caption_extensions])
+
 @flask_server.route('/get_next_batch', methods=['POST'])
 @verify_token
 def get_next_batch():
     data = request.get_json()
     directory = data.get('directory')
-
 
     if directory not in file_lists:
         return jsonify({
@@ -117,7 +124,15 @@ def get_next_batch():
         })
 
     end_index = min(current_index + BATCH_SIZE, len(file_list))
-    batch = file_list[current_index:end_index]
+    
+    batch = [
+        {
+            'path': file_path,
+            'hasCaptionFile': has_caption_file(file_path)
+        }
+        for file_path in file_list[current_index:end_index]
+    ]
+
     file_data['current_index'] = end_index
 
     return jsonify({
@@ -126,4 +141,22 @@ def get_next_batch():
         'has_more': end_index < len(file_list)
     })
     
-# Todo: Figure out how to split this into separate files
+
+@flask_server.route('/image/<path:filename>')
+def serve_image(filename):
+    # Get the file extension
+    _, ext = os.path.splitext(filename)
+    ext = ext.lower()
+    
+    # Determine the MIME type
+    mime_type = FILE_EXTENSIONS.get(ext)
+    
+    # If we couldn't determine the MIME type, use mimetypes as a fallback
+    if mime_type is None:
+        mime_type, _ = mimetypes.guess_type(filename)
+    
+    # If still None, default to 'application/octet-stream'
+    if mime_type is None:
+        mime_type = 'application/octet-stream'
+
+    return send_file(filename, mimetype=mime_type)

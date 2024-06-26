@@ -42,6 +42,7 @@
     border: 1px solid #ccc;
     border-radius: 2px;
     padding: 4px;
+    overflow-y: auto;
 }
 
 .directory-interaction-container > .media-container {

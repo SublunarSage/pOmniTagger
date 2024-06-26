@@ -45,14 +45,19 @@ if __name__ == '__main__':
     t.daemon = True
     t.start()
 
-    app = MainWindow(sys.argv)
+    #app = MainWindow(sys.argv)
     # Create a Pywebview window
     window = webview.create_window(
         'Flask with Pywebview', 'http://localhost:8050', min_size=(1280,800), 
         frameless=False, easy_drag=False, resizable=True
         )
     
-    
+    webview.settings = {
+        'ALLOW_DOWNLOADS': True,
+        'ALLOW_FILE_URLS': True,
+        'OPEN_EXTERNAL_LINKS_IN_BROWSER': True,
+        'OPEN_DEVTOOLS_IN_DEBUG': True
+    }
     webview.start(gui='qt', debug=True)
     
    
